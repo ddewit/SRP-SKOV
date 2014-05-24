@@ -1,0 +1,150 @@
+// Import specific LESS Framework
+@import 'framework.less';
+
+// Font facing.
+@font-face {
+  font-family: 'montserrat bold';
+  src: url('../fonts/montserrat-bold.eot');
+  src: url('../fonts/montserrat-bold.eot?#iefix') format('embedded-opentype'), url('../fonts/montserrat-bold.woff') format('woff'), url('../fonts/montserrat-bold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'montserrat regular';
+  src: url('../fonts/montserrat-regular.eot');
+  src: url('../fonts/montserrat-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/montserrat-regular.woff') format('woff'), url('../fonts/montserrat-regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+// General mixins and variables
+@white:			#ffffff;
+@black:			#000000;
+@orange:		#ff6347;
+@lightgrey:		#f6f5f3;
+@darkgrey:		#333333;
+
+// -- Section colors
+@headerbg:		@white;
+@contentbg:		@lightgrey;
+@footerbg:		@darkgrey;
+
+// -- Text colors
+@textcolor:		#444444;
+@footercolor: 	@white;
+
+// Font-faced font mixins
+.montserrat-regular						{ font-family: 'montserrat regular', 'Helvetica', sans-serif; }
+.montserrat-medium						{ font-family: 'MSMedium', 'Helvetica', sans-serif; }
+.montserrat-bold						{ font-family: 'montserrat bold', 'Helvetica', sans-serif; }
+
+// Anchor mixin							
+.anchor (@color: @textcolor, @hoverColor: tint(@textcolor,30%)) {
+	text-decoration: none; 
+	color:@color;
+	
+	&:hover, &:active{
+		color: @hoverColor;
+	}
+}
+
+// General css
+body, html								{ .montserrat-regular; height: 100%; width: 100%; background: @footerbg; color:@textcolor; }
+.container								{ .relative; width: 960px; margin: 0 auto; }
+h1, h2, h3, h4, h5, h6					{ font-weight: normal; margin-bottom:15px; }
+a, a:link, a:visited, a:hover, a:active { .transition(color .2s); .anchor(tint(@orange,30%), tint(@orange,10%)); }
+
+
+// Header
+header.page-head						{ .helvetica; overflow:hidden; background:@white; padding: 30px 10px; border-bottom: 1px solid #dddddd;
+	a.logo								{ 
+		h1								{ color:@textcolor; font-size: 18px; font-weight: bold; margin: 0;}
+		h2								{ color:@textcolor; clear:left; font-size: 14px; font-style: italic; margin: 0; }	
+	}
+	
+	nav.main-nav						{ .absolute; top:3px; right:0;
+		ul 								{
+			li 							{ .inlineblock; .fl; 
+				a						{ .block; border:0; padding:5px 10px; color:tint(@orange, 30%); margin-left:5px;
+					&:hover, &.current	{ color: tint(@orange, 10%); text-decoration: underline; }
+				}
+			}
+		}
+	}
+}
+
+// Content
+section.page-content					{ .relative; overflow:hidden; background: @contentbg; padding:35px 0; min-height:400px;
+	.page-loader						{ .absolute; .ac; top: 0; left: 0; bottom: 0; right: 0; width:100%; height:100%; background: url('../images/ajax-loader.gif') no-repeat center top 150px tint(rgb(255,99,71),20); z-index:10; color:@white; padding-top: 245px; font-size:24px; }
+
+	p, ul 								{ .helvetica; font-size:13px; line-height:1.3em;
+		&:not(:last-child)				{ margin-bottom:15px; }
+	}
+
+	ul 									{
+		li								{ 
+			&:before 					{ content: "- "; color:tint(@textcolor,15%); line-height:1.3em;}
+		}
+	}
+
+	.notification 						{ border-width: 1px; border-style: solid; padding: 15px 10px; margin-bottom:10px; 
+		&.error							{ background: rgb(200,100,100); background: rgba(200,100,100,0.3); color: #000; border-color: #ff0000; 
+			a							{ .anchor(#770000); }
+		}
+		&.success						{ background: rgb(100,200,100); background: rgba(100,200,100,0.3); color: #000; border-color: #00aa00; 
+			a							{ .anchor(#007700); }
+		}
+		&.notice						{ background: rgb(060,160,255); background: rgba(060,160,255,0.5); color: #000; border-color: rgb(60,160,255); 
+			a							{ .anchor(#000077); }
+		}
+		&.warning						{ background: rgb(239,242,157); background: rgba(239,242,157,0.3); color: #000; border-color: #EAF046; 
+			a							{ .anchor(shade(#EAF046,40%)); }
+		}
+		
+		h4								{ font-size: 14px; text-transform: uppercase; margin-bottom:5px;}
+		p								{ font-size: 12px; }
+	}
+	
+	.visualisation						{ overflow: visible; text-align: justify;	
+		.graph							{ .fl; .col-2-3; padding-right:30px; 
+			#chart						{ .helvetica; color:@textcolor;
+				svg 					{ font: 10px sans-serif; }
+			    .bar 					{ fill: tint(rgb(255,99,71),20); .transition(all .1s);
+			    	&:hover				{ fill: rgb(255,99,71);}
+			    }
+
+				.axis 					{ font: 10px sans-serif;
+					path, line 			{ fill: none; stroke: #000; shape-rendering: crispEdges; }
+					&.x					{ 
+						path			{ .none; }
+						text 			{ text-anchor: end; }
+					}
+				}
+			}
+		}
+		
+		.filter							{ .relative; overflow:visible; .fl; .col-1-3; background:@white; padding: 10px; margin-top:-10px; border:1px solid #dddddd;
+			
+			form#filter-form			{
+				ul 						{ .helvetica; font-size:13px;
+					li					{ 
+						label 			{ .block; .transition(all .2s); vertical-align: middle; padding: 10px; background:tint(@orange,30%); color:@white; margin-bottom:2px; cursor:pointer;
+							&:hover 	{ background:tint(@orange,10%); }
+							
+							input[type="checkbox"]{margin-top:0;vertical-align: middle;}
+						}
+
+						&:before 		{ content: ""; }
+					}	
+				}
+			}
+		}
+	}
+}
+
+// Footer
+footer.page-footer						{ padding: 35px; border-top: 3px solid #ff6347; color: @footercolor;
+	.copyright							{ .helvetica; font-size:12px; font-weight:light; letter-spacing:.5px;
+		a								{ .anchor(shade(@footercolor,30%)); }			
+	}
+}
