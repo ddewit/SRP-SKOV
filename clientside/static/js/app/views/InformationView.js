@@ -9,8 +9,8 @@ function(	Backbone, 			App, 		Loader,				InformationView				){
 		},
 
 		render: function() {
-			var tmpl = _.template(document.querySelector(SKOV.templates['information']).html());
-			document.querySelector(SKOV.wrapSelector).html( tmpl() );
+			var tmpl = _.template($(SKOV.templates['information']).html());
+			$(SKOV.wrapSelector).html( tmpl() );
 
 			// Hide loader
 			Loader.hide();
