@@ -18,8 +18,16 @@ function(Backbone, 			$,					Loader,				VisualisationView, 				InformationView, 
 			// Log event
 			console.log('ROUTER :: showIndex');
 			
-			// Highlight proper navigational item
-			$('nav.main-nav a').removeClass('current').filter('[href="#visualisatie"]').addClass('current');
+			// Remove current class from all nav anchors
+			var elements = document.querySelectorAll('nav.main-nav a');
+			for(var count=0; count < elements.length; count++){
+				if(elements.hasOwnProperty(count)){
+					elements[count].classList.remove('current');
+				}
+			}
+
+			// Add current to proper item
+			document.querySelector('[href="#visualisatie"]').classList.add('current');
 			
 			// Load and render view
 			var view = new VisualisationView();
@@ -32,8 +40,16 @@ function(Backbone, 			$,					Loader,				VisualisationView, 				InformationView, 
 			// Log event
 			console.log('ROUTER :: showInformation');
 			
-			// Highlight proper navigational item
-			$('nav.main-nav a').removeClass('current').filter('[href="#informatie"]').addClass('current');
+			// Remove current class from all nav anchors
+			var elements = document.querySelectorAll('nav.main-nav a');
+			for(var count=0; count < elements.length; count++){
+				if(elements.hasOwnProperty(count)){
+					elements[count].classList.remove('current');
+				}
+			}
+
+			// Add current to proper item
+			document.querySelector('[href="#informatie"]').classList.add('current');
 			
 			// Load and render view
 			var view = new InformationView();
@@ -45,8 +61,16 @@ function(Backbone, 			$,					Loader,				VisualisationView, 				InformationView, 
 			// Log event
 			console.log('ROUTER :: showError404');
 
-			// Highlight proper navigational item
-			$('nav.main-nav a').removeClass('current').filter('[href="#404"]').addClass('current');
+			// Remove current class from all nav anchors
+			var elements = document.querySelectorAll('nav.main-nav a');
+			for(var count=0; count < elements.length; count++){
+				if(elements.hasOwnProperty(count)){
+					elements[count].classList.remove('current');
+				}
+			}
+
+			// Add current to proper item
+			document.querySelector('[href="#404"]').classList.add('current');
 			
 			// Load and render view
 			var view = new Error404View();

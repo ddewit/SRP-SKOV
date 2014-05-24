@@ -9,8 +9,8 @@ function(	Backbone, 			App, 		Loader,				Error404View			){
 		},
 
 		render: function() {
-			var tmpl = _.template($(SKOV.templates['error404']).html());
-			$(SKOV.wrapSelector).html( tmpl() );
+			var tmpl = _.template(document.querySelector(SKOV.templates['error404']).outerHTML);
+			document.querySelector(SKOV.wrapSelector).html( tmpl() );
 
 			// Show loader
 			Loader.hide();

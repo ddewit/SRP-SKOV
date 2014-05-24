@@ -1,5 +1,5 @@
-define([	"vendor/jquery",	"app/App"	], 
-function(	$, 					App			){
+define(["app/App"	], 
+function(App		){
 	console.log('NOW RUNNING :: app/app.js');
  		
 	// Dataset (will contain data, after it is fetched from serverside component)

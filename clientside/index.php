@@ -38,7 +38,7 @@
         </header>
 
         <section class="page-content">
-        	<div class="page-loader">Bezig met laden</div>
+        	<div class="page-loader active">Bezig met laden</div>
         
             <div class="container">
                 <!--[if lt IE 9]>

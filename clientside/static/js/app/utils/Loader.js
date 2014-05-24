@@ -4,11 +4,13 @@ function(	$, 					App, 		Loader				){
 	
 	var Loader = {
 		show:	function(){
-			$(SKOV.loaderSelector).fadeIn(0);
+			console.log('LOADER :: Showing loader');
+			document.querySelector(SKOV.loaderSelector).classList.add('active');
 		},
 		
 		hide:	function(){
-			$(SKOV.loaderSelector).fadeOut();
+			console.log('LOADER :: Hiding loader');
+			document.querySelector(SKOV.loaderSelector).classList.remove('active');
 		}
 	}
 	

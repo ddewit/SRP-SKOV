@@ -3,8 +3,8 @@ function(	Backbone, 			d3,				App, 		Loader,				chartDrawer,			VisualisationView
 	console.log('NOW RUNNING :: appView/VisualisationView.js');
 	
 	var VisualisationView = Backbone.View.extend({
-		el: $(".template-container"),
-		tableEl: $(".sko-data tbody"),
+		el: document.querySelector(".template-container"),
+		tableEl: document.querySelector(".sko-data tbody"),
 		template: $(SKOV.templates['visualisation']).html(),
 
 		initialize: function () {

@@ -1,5 +1,5 @@
-define([	"vendor/jquery",	"vendor/d3",	"app/App", 	"appUtils/Loader"	], 
-function(	$, 					d3,				App, 		Loader				){
+define([	"vendor/d3",	"app/App", 	"appUtils/Loader"	], 
+function(	d3,				App, 		Loader				){
 	console.log('NOW RUNNING :: appUtils/chartDrawer.js');
 	
 	var chartDrawer = {

@@ -16,7 +16,7 @@ function(   Backbone,           App,        VisualisationView,               Num
             }
         },
 
-        store: function(){
+        store: function(data){
             // Check for storage support
             try{
                 storageKey      = this.getFormattedDate();
@@ -51,9 +51,15 @@ function(   Backbone,           App,        VisualisationView,               Num
             worker.addEventListener('message', function(e) {
                 try{
                     // Handle fetched
-                    data = JSON.parse(e.data);
-                    data = $.map(data, function(value, index) {    return [value]; });
-                    console.log('WORKER PARENT :: RECEIVED :: ', data);
+                    dataObject = JSON.parse(e.data);
+                    data = [];
+                    for(var i in dataObject ) {
+                        if(dataObject.hasOwnProperty(i)){
+                            data[i-1] = dataObject[i]; // Minus one to prevent first being null
+                        }
+                    }
+
+                    console.log('WORKER PARENT :: RECEIVED :: ', data, ' :: ORIGINAL OBJECT :: ', dataObject);
                     self.store(data);
                     self.handleNewData(data);
                 }
